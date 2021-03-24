@@ -1,3 +1,2 @@
-import NameOfTheService from './components/NameOfTheService.jsx';
-
-window.NameOfTheService = NameOfTheService;
+import App from './App.jsx'
+window.App = App

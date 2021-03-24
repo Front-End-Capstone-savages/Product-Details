@@ -2,18 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+  integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+  crossorigin="anonymous"
+/>
+  <link rel="stylesheet" href="style.css">
   <title>Service Name Here</title>
 </head>
 <body>
+  <center>
   <div id="name-of-the-service"></div>
   <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   <script src="http://localhost:3001/app.js"></script>
   <script>
     ReactDOM.render(
-      React.createElement(NameOfTheService),
+      React.createElement(App),
       document.getElementById('name-of-the-service')
     );
   </script>
+  </center>
 </body>
 </html>
