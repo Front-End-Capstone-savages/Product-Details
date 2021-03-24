@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Carousel from './components/carousell.jsx'
+import Generalinfo from './components/generalinfo.jsx'
 export default class App extends Component {
     constructor(props){
         super(props)
@@ -19,6 +20,7 @@ export default class App extends Component {
 </div>
 </nav>
                 <Carousel/>
+                <Generalinfo/>
             </div>
         )
     }
