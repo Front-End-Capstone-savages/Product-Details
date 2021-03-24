@@ -5,8 +5,8 @@
 
 }
 .image{
-    width: 737px;
-    height: 500px;
+    width: 680px;
+    height: 424px;
     border-radius: 10px;
     margin-top: 3em;
     margin-left: 10em;
@@ -15,8 +15,8 @@
 
 .right-arrow {
     position: absolute;
-    top: 50%;
-    left: 17em;
+    top: 40%;
+    left: 25em;
     font-size: 2rem;
     color: rgb(163, 163, 163);
     z-index: 10;
@@ -25,7 +25,7 @@
 }
 .left-arrow {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 20rem;
     font-size: 2rem;
     color: rgb(163, 163, 163);
@@ -43,4 +43,17 @@
 .form-control.rounded{
     margin-left: 64em;
     margin-right: 2em;
+}
+.side-img{
+    height: 50px;
+    width: 50px;
+    
+    
+    /* margin-top: 5em;
+    margin-left: -41em; */
+}
+.side-car-cont{
+    display: grid;
+    margin-left: -41em;
+    margin-top: 4em;
 }

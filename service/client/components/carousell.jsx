@@ -1,5 +1,6 @@
  import React, { Component } from 'react'
  import fakeData from '../fakeData.js'
+ import fake2data from '../fake2data.js'
  import { FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa'
  import Splide from '@splidejs/splide';
 
@@ -38,6 +39,7 @@
          return (
              <div>
              <div className="slider">
+                 
                  <FaArrowAltCircleLeft className="left-arrow" onClick={this.prevSlide}/>
                  <FaArrowAltCircleRight className="right-arrow" onClick={this.nextSlide}/>
                  {fakeData.map((imageUrl, index) =>{
@@ -47,6 +49,14 @@
                 {console.log('index', index, 'curent', this.state.curent)}
                 </div>
                  )})}
+                 <div className="side-car-cont">
+                     {fake2data.map((img, index) =>{
+                         return(
+                             <img key={index}src={img.image} className='side-img'/>
+                         )
+                     })}
+             {/* <img src='https://coverflooring.com/wp-content/uploads/2019/05/PVC-Expotrend-1015-Dark-Grey.jpg' className='side-img'/> */}
+                 </div>
              </div>
                 </div>
          )
