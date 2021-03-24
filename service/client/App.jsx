@@ -1,10 +1,32 @@
 import React, { Component } from 'react'
 import Carousel from './components/carousell.jsx'
 import Generalinfo from './components/generalinfo.jsx'
+import token from './config/config.js'
+import axios from 'axios'
 export default class App extends Component {
     constructor(props){
         super(props)
+        this.state = {
+            data: [],
+            id: 12000
+        }
     }
+    componentDidMount(){
+        this.getdata();
+    }
+    getdata(){
+        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.state.id}`,{
+            headers: {
+                'Authorization': `${token}`
+            }
+        }).then((res)=>{
+            this.setState({
+            data: res.data
+            })
+        }).catch((err)=>{
+            console.log(err);
+        })
+     }
     
     render() {
         return (
@@ -20,7 +42,7 @@ export default class App extends Component {
 </div>
 </nav>
                 <Carousel/>
-                <Generalinfo/>
+                <Generalinfo data={this.state.data}/>
             </div>
         )
     }

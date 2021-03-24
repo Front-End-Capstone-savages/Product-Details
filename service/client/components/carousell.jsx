@@ -3,6 +3,7 @@
  import Splide from '@splidejs/splide';
  import token from '../config/config.js'
  import axios from 'axios'
+ import Generalinfo from './generalinfo.jsx'
 
  export default class Carousel extends Component {
      constructor(props){
@@ -78,8 +79,8 @@
              </div>
                 </div>
          )
-     }
- }
+        }
+    }
 
 
 
