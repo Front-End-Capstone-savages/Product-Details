@@ -33,3 +33,14 @@
     cursor: pointer;
     user-select: none;
 }
+/* Searchicon  */
+.bi.bi-search{
+    color: white;
+    margin-top: 10px;
+    margin-right: 6px;
+    margin-left: -19px;
+}
+.form-control.rounded{
+    margin-left: 64em;
+    margin-right: 2em;
+}
