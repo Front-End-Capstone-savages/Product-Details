@@ -45,10 +45,9 @@
     margin-right: 2em;
 }
 .side-img{
-    height: 50px;
-    width: 50px;
-    
-    
+    height: 70px;
+    width: 70px;
+    border: 0.5px solid black;
     /* margin-top: 5em;
     margin-left: -41em; */
 }
@@ -61,4 +60,7 @@
     margin-left: 14em;
     margin-top: -34em;
     display: table-caption;
+}
+.side-car-cont{
+    max-height: 25em;
 }

@@ -1,28 +1,46 @@
  import React, { Component } from 'react'
- import fakeData from '../fakeData.js'
- import fake2data from '../fake2data.js'
  import { FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa'
  import Splide from '@splidejs/splide';
+ import token from '../config/config.js'
+ import axios from 'axios'
 
  export default class Carousel extends Component {
      constructor(props){
          super(props)
          this.state={
-             curent: 0
+             curent: 0,
+             id: 12000,
+             data:[]
          }
          this.nextSlide = this.nextSlide.bind(this);
          this.prevSlide = this.prevSlide.bind(this);
      }
+     componentDidMount(){
+         this.getdata();
+     }
+     getdata(){
+        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.state.id}/styles`,{
+            headers: {
+                'Authorization': `${token}`
+            }
+        }).then((res)=>{
+            this.setState({
+            data: res.data.results
+            })
+        }).catch((err)=>{
+            console.log(err);
+        })
+     }
      nextSlide() {
-        const length = fakeData.length
+        const length = this.state.data.length
         if(this.state.curent === length){
-            this.setState({curent: 0})
+            this.setState({curent: 0, id:12000})
         }else if (this.state.curent < length){
-            this.setState({curent: this.state.curent + 1})
+            this.setState({curent: this.state.curent + 1, id:this.state.id})
         }
      }
      prevSlide() {
-        const length = fakeData.length
+        const length = this.state.data.length
         if(this.state.curent === 0){
             this.setState({curent: length - 1})
         }else{
@@ -39,20 +57,20 @@
          return (
              <div>
              <div className="slider">
-                 
                  <FaArrowAltCircleLeft className="left-arrow" onClick={this.prevSlide}/>
                  <FaArrowAltCircleRight className="right-arrow" onClick={this.nextSlide}/>
-                 {fakeData.map((imageUrl, index) =>{
+                 {this.state.data.map((element, index) =>{
                      return (
                  <div className={index === this.state.curent ? 'slide active' : 'slide'} key={index}>
-                     {index === this.state.curent  && (<img key={index} src={imageUrl.image} alt='color image' className="image"/>)}
-                {console.log('index', index, 'curent', this.state.curent)}
+                     {index === this.state.curent  && (<img key={index} src={element.photos[0].url} alt='color image' className="image"/>)}
                 </div>
                  )})}
                  <div className="side-car-cont">
-                     {fake2data.map((img, index) =>{
+                     {this.state.data.map((element, index) =>{
                          return(
-                             <img key={index}src={img.image} className='side-img'/>
+                             <div className='side-img-container' key={index}>
+                             <img src={element.photos[0].thumbnail_url} className='side-img'/>
+                             </div>
                          )
                      })}
              {/* <img src='https://coverflooring.com/wp-content/uploads/2019/05/PVC-Expotrend-1015-Dark-Grey.jpg' className='side-img'/> */}
@@ -62,3 +80,9 @@
          )
      }
  }
+
+
+
+
+
+ 
