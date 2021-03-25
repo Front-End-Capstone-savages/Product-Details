@@ -64,3 +64,53 @@
 .side-car-cont{
     max-height: 25em;
 }
+.color-container{
+    /* width: 100px;
+    height: 100px; */
+    margin-left: 27.5em;
+    margin-top: 1;
+}
+.color{
+    max-width: 50px;
+    max-height: 50px;
+    border: 1px solid black;
+    border-radius: 30px;
+    opacity: 0.7;
+}
+.color-div1{
+margin-right: 1em;
+}
+.color-div2{
+    margin-top: -3.1em;
+    margin-left: 7em;
+}
+.color-div3{
+    margin-top: -3.1em;
+    margin-left: 15em;
+}
+.color-div4{
+    margin-top: -3.1em;
+    margin-left: 22em;
+}
+.color-div5{
+    margin-left: -1em;
+    margin-top: 0.5em;
+}
+.color-div6{
+    margin-top: -3.1em;
+    margin-left: 7em;
+}
+.color-div7{
+    margin-top: -3.1em;
+    margin-left: 15em;
+}
+.color-div8{
+    margin-top: -3.1em;
+    margin-left: 22em;
+}
+.color-spes{
+    max-width: 50px;
+    max-height: 50px;
+    border: 1px solid black;
+    border-radius: 30px;
+}

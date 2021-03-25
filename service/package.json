@@ -24,6 +24,9 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-icons": "^4.2.0",
+    "react-slick": "^0.28.1",
+    "save": "^2.4.0",
+    "slick-carousel": "^1.8.1",
     "webpack": "^3.11.0"
   }
 }
