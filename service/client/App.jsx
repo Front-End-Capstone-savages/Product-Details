@@ -3,16 +3,19 @@ import Carousel from './components/carousell.jsx'
 import Generalinfo from './components/generalinfo.jsx'
 import token from './config/config.js'
 import axios from 'axios'
+// import Vertical from './components/Vertical.jsx'
 export default class App extends Component {
     constructor(props){
         super(props)
         this.state = {
             data: [],
-            id: 12000
+            style:[],
+            id: 11003
         }
     }
     componentDidMount(){
         this.getdata();
+        this.getstyledata();
     }
     getdata(){
         axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.state.id}`,{
@@ -27,11 +30,24 @@ export default class App extends Component {
             console.log(err);
         })
      }
-    
+     getstyledata(){
+        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.state.id}/styles`,{
+            headers: {
+                'Authorization': `${token}`
+            }
+        }).then((res)=>{
+            this.setState({
+            style: res.data.results
+            })
+        }).catch((err)=>{
+            console.log(err);
+        })
+     }
     render() {
-        return (
-            
+        return (          
             <div>
+                {'this is my style data',console.log(this.state.style)}
+                {window.scrollTo(0, 0)}
                 <nav className="navbar navbar-dark bg-dark">
                 <div className="input-group rounded">
   <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search"
@@ -42,7 +58,8 @@ export default class App extends Component {
 </div>
 </nav>
                 <Carousel/>
-                <Generalinfo data={this.state.data}/>
+                <Generalinfo data={this.state.data} style={this.state.style}/>
+                {/* <Vertical /> */}
             </div>
         )
     }

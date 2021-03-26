@@ -3,18 +3,18 @@
  import Splide from '@splidejs/splide';
  import token from '../config/config.js'
  import axios from 'axios'
- import Generalinfo from './generalinfo.jsx'
 
  export default class Carousel extends Component {
      constructor(props){
          super(props)
          this.state={
              curent: 0,
-             id: 12000,
+             id: 11001,
              data:[]
          }
          this.nextSlide = this.nextSlide.bind(this);
          this.prevSlide = this.prevSlide.bind(this);
+         this.changeImg = this.changeImg.bind(this);
      }
      componentDidMount(){
          this.getdata();
@@ -54,28 +54,64 @@
             perPage  : 3,
         } ).mount();
     }
+    changeImg(event) {
+        // console.log(event.target.id)
+        this.setState({
+            curent: event.target.id
+        })
+    }
      render() {
          return (
              <div>
              <div className="slider">
                  <FaArrowAltCircleLeft className="left-arrow" onClick={this.prevSlide}/>
                  <FaArrowAltCircleRight className="right-arrow" onClick={this.nextSlide}/>
-                 {this.state.data.map((element, index) =>{
-                     return (
-                 <div className={index === this.state.curent ? 'slide active' : 'slide'} key={index}>
-                     {index === this.state.curent  && (<img key={index} src={element.photos[0].url} alt='color image' className="image"/>)}
+                 {this.state.data.map((element, index) =>(
+        
+                 <div className={this.state.curent ? 'slide active' : 'slide'} key={index}>
+                     {console.log('index', index, 'curent', this.state.curent)}
+                     {index == this.state.curent  && (<img key={index} src={element.photos[this.state.curent].url} alt='color image' className="image"/>)}
                 </div>
-                 )})}
-                 <div className="side-car-cont">
+                 ))}
+                 {/* <div className="side-car-cont">
                      {this.state.data.map((element, index) =>{
                          return(
                              <div className='side-img-container' key={index}>
-                             <img src={element.photos[0].thumbnail_url} className='side-img'/>
+                             <img src={element.photos[0].thumbnail_url} className='side-img' id={index} onClick={(event) =>this.changeImg(event)}/>
                              </div>
+                            
                          )
                      })}
-             {/* <img src='https://coverflooring.com/wp-content/uploads/2019/05/PVC-Expotrend-1015-Dark-Grey.jpg' className='side-img'/> */}
-                 </div>
+                 </div> */}
+                 <div className="container">
+        <div className="row">
+          <div className="col-md-3">
+            <div id="carousel-pager" className="carousel slide " data-ride="carousel" data-interval={500000000}>
+              {/* Carousel items */}
+              <div className="carousel-inner vertical">
+                  
+                <div className="active item">
+                    {this.state.data.map((element, index)=>{
+                        return(
+
+                            <img src={element.photos[0].thumbnail_url} className="img-responsive" data-target="#carousel-main" data-slide-to={0} id={index} onClick={(event) =>this.changeImg(event)}/>
+                        )
+                    })}
+                </div>
+              </div>
+              {/* Controls */}
+              <a className="left carousel-control" href="#carousel-pager" role="button" data-slide="prev">
+                <span className="glyphicon glyphicon-chevron-up" aria-hidden="true" />
+                <span className="sr-only">Previous</span>
+              </a>
+              <a className="right carousel-control" href="#carousel-pager" role="button" data-slide="next">
+                <span className="glyphicon glyphicon-chevron-down" aria-hidden="true" />
+                <span className="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
              </div>
                 </div>
          )

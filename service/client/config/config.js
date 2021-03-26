@@ -1,3 +1,3 @@
 //PUT GIT HUB KEY
-var token = 'c88dbad255fa07c95ea8cdc992066941a9d45755'
+var token = 'cea0e2a73f0433d8392282d04b675df060fc6633'
 export default token
