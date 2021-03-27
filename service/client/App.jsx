@@ -44,10 +44,9 @@ export default class App extends Component {
         })
      }
     render() {
-        return (          
-            <div>
-                {'this is my style data',console.log(this.state.style)}
-                {window.scrollTo(0, 0)}
+        return (         
+            <div> 
+            {window.scrollTo(0, 0)}
                 <nav className="navbar navbar-dark bg-dark">
                 <div className="input-group rounded">
   <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search"
@@ -57,9 +56,11 @@ export default class App extends Component {
   </svg>
 </div>
 </nav>
-                <Carousel/>
-                <Generalinfo data={this.state.data} style={this.state.style}/>
+                    <div className="main-comp">
+                <Carousel id={this.state.id}/>
+                <Generalinfo data={this.state.data} style={this.state.style} id={this.state.id}/>
                 {/* <Vertical /> */}
+            </div>
             </div>
         )
     }

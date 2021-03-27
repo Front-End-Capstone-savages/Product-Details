@@ -9,7 +9,7 @@
          super(props)
          this.state={
              curent: 0,
-             id: 11001,
+            //  id: 11001,
              data:[]
          }
          this.nextSlide = this.nextSlide.bind(this);
@@ -20,7 +20,7 @@
          this.getdata();
      }
      getdata(){
-        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.state.id}/styles`,{
+        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.id}/styles`,{
             headers: {
                 'Authorization': `${token}`
             }
@@ -35,9 +35,9 @@
      nextSlide() {
         const length = this.state.data.length
         if(this.state.curent === length){
-            this.setState({curent: 0, id:12000})
+            this.setState({curent: 0})
         }else if (this.state.curent < length){
-            this.setState({curent: this.state.curent + 1, id:this.state.id})
+            this.setState({curent: this.state.curent + 1, id:this.props.id})
         }
      }
      prevSlide() {
@@ -69,20 +69,10 @@
                  {this.state.data.map((element, index) =>(
         
                  <div className={this.state.curent ? 'slide active' : 'slide'} key={index}>
-                     {console.log('index', index, 'curent', this.state.curent)}
+                     {/* {console.log('index', index, 'curent', this.state.curent)} */}
                      {index == this.state.curent  && (<img key={index} src={element.photos[this.state.curent].url} alt='color image' className="image"/>)}
                 </div>
                  ))}
-                 {/* <div className="side-car-cont">
-                     {this.state.data.map((element, index) =>{
-                         return(
-                             <div className='side-img-container' key={index}>
-                             <img src={element.photos[0].thumbnail_url} className='side-img' id={index} onClick={(event) =>this.changeImg(event)}/>
-                             </div>
-                            
-                         )
-                     })}
-                 </div> */}
                  <div className="container">
         <div className="row">
           <div className="col-md-3">
@@ -93,7 +83,6 @@
                 <div className="active item">
                     {this.state.data.map((element, index)=>{
                         return(
-
                             <img src={element.photos[0].thumbnail_url} className="img-responsive" data-target="#carousel-main" data-slide-to={0} id={index} onClick={(event) =>this.changeImg(event)}/>
                         )
                     })}
