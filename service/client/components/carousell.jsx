@@ -66,7 +66,7 @@
              <div className="slider">
                  <FaArrowAltCircleLeft className="left-arrow" onClick={this.prevSlide}/>
                  <FaArrowAltCircleRight className="right-arrow" onClick={this.nextSlide}/>
-                 {this.state.data.map((element, index) =>(
+                 {this.props.style.map((element, index) =>(
         
                  <div className={this.state.curent ? 'slide active' : 'slide'} key={index}>
                      {/* {console.log('index', index, 'curent', this.state.curent)} */}
@@ -81,7 +81,7 @@
               <div className="carousel-inner vertical">
                   
                 <div className="active item">
-                    {this.state.data.map((element, index)=>{
+                    {this.props.style.map((element, index)=>{
                         return(
                             <img src={element.photos[0].thumbnail_url} className="img-responsive" data-target="#carousel-main" data-slide-to={0} id={index} onClick={(event) =>this.changeImg(event)}/>
                         )
@@ -102,6 +102,7 @@
         </div>
       </div>
              </div>
+             {/* {console.log('hssin', this.props.id)} */}
                 </div>
          )
         }

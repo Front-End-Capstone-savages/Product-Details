@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import token from "../config/config.js";
+import Carousel from "./carousell.jsx"
 import StarRatingComponent from 'react-star-rating-component';
 
 export default class generalinfo extends Component {
@@ -9,13 +10,15 @@ export default class generalinfo extends Component {
     this.state = {
       data: [],
       style: "Black",
-      rating:[]
+      rating:[],
+      id: this.props.id
     };
     this.checkIcons = this.checkIcons.bind(this);
   }
   componentDidMount() {
     this.getdata();
     this.getRating();
+    console.log("my id",this.state.id)
   }
 
   checkIcons() {
@@ -89,25 +92,22 @@ export default class generalinfo extends Component {
       </svg>
     );
   }
-
   render() {
     return (
       <div>
         <div className="gen-info">
-          {console.log(this.props.style[0])}
-          {console.log("rating",this.state.rating.results)}
           <StarRatingComponent 
+          className="rating-stars"
           name="rate2" 
           editing={false}
           
           starCount={5}
           value={3}
         />
-       {/* <Rating name="half-rating" defaultValue={2.5} precision={0.5} /> */}
-          <div>{this.props.data.category}</div>
+          <div className="category">{this.props.data.category}</div>
 
-          <h3>{this.props.data.name}</h3>
-          <p>${this.props.data.default_price}</p>
+          <h3 className="name">{this.props.data.name}</h3>
+          <p className="price">${this.props.data.default_price}</p>
           <p>
             STYLE
             <svg
@@ -126,19 +126,53 @@ export default class generalinfo extends Component {
             {this.state.style}
           </p>
         </div>
-        <div className='color-container'>
                  {this.props.style.map((element, index) => {
-                    //  {console.log(element.name)}
                      return (
-                         <div className='color-container'>
+                         <div key={index} className='color-container' onClick={()=>this.props.changeStyle()}>
                          <div className='color' style={{background: element.name}} onClick={()=>this.setState({style: element.name})} > </div>
                          </div>
                         )
                     })}                
                
                 
-            </div>
-            {console.log(this.state.style)}
+               <div className="dropdown show">
+  <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    SELECT SIZE
+  </a>
+
+  <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    {/* {console.log(this.props.style)} */}
+    {this.props.style.map((element, index) =>{
+      return(
+      Object.values(element.skus).map((e,i)=>{
+        return (
+            <a key={i} className="dropdown-item">{e.size}</a>
+          )
+        })
+      )
+    })}
+  </div>
+  
+</div>
+<div className="dropdown show">
+  <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    SELECT SIZE
+  </a>
+
+  <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    {this.props.style.map((element, index) =>{
+      return(
+      Object.values(element.skus).map((e,i)=>{
+
+        return (
+            <a key={i} className="dropdown-item">{e.quantity}</a>
+          )
+        })
+      )
+    })}
+  </div>
+  
+</div>
       </div>
     );
   }

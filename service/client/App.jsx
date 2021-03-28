@@ -43,6 +43,12 @@ export default class App extends Component {
             console.log(err);
         })
      }
+     changeStyle(){
+         this.setState({
+             id: this.state.id + 1
+         })
+        this.getstyledata()
+     }
     render() {
         return (         
             <div> 
@@ -57,8 +63,8 @@ export default class App extends Component {
 </div>
 </nav>
                     <div className="main-comp">
-                <Carousel id={this.state.id}/>
-                <Generalinfo data={this.state.data} style={this.state.style} id={this.state.id}/>
+                <Carousel id={this.state.id} style={this.state.style}/>
+                <Generalinfo data={this.state.data} style={this.state.style} id={this.state.id} changeStyle={this.changeStyle.bind(this)}/>
                 {/* <Vertical /> */}
             </div>
             </div>
